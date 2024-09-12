@@ -45,3 +45,5 @@ To build this system I used the following tools:
 [FastAPI_Helpers/agent.py file](https://github.com/MarcDagher/Topic_Summarizer/blob/main/FastAPI_Helpers/agent.py) contains the core implementation of this repo, where the LangGraph agent is structured using nodes and edges. In this application, the LLM serves both as a chatbot and as a tool user, with [Tavily](https://tavily.com/) as the associated tool. Although LLMs are powerful tools, they come with their own challenges that are addressed using prompt engineering techniques like identity prompting, few-shot prompting, and chain-of-thought prompting. The LLM is first given an identity, followed by a step-by-step guide for tool usage, and instructions on organizing and presenting its results.
 
 <h3>🎬Demo</h3>
+
+![Demo :)](https://github.com/MarcDagher/Topic_Summarizer/blob/main/Demo/demo.gif)
