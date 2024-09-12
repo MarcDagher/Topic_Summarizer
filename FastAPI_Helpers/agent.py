@@ -9,7 +9,6 @@ from langgraph.checkpoint.memory import MemorySaver
 # General
 import operator
 from typing import TypedDict, Annotated
-from IPython.display import Image, display
 
 class AgentState(TypedDict):
   conversation: Annotated[list[AnyMessage], operator.add]
@@ -30,7 +29,6 @@ class Agent:
 
     memory = MemorySaver()
     self.graph = graph.compile(checkpointer=memory)
-    self.image = Image(self.graph.get_graph().draw_mermaid_png())
   
   ## Talk to the model
   def use_model(self, state: AgentState):

@@ -1,6 +1,7 @@
 import streamlit as st
-from Streamlit_Helpers.api_functions import get_api_response
- 
+from Streamlit_Helpers.api_functions import get_api_response, get_agent_image
+from IPython.display import display
+
 def display_chat_page(session_state):
 
   if prompt := st.chat_input(placeholder = "Your message ..."): # (:= assigns chat_input's result to prompt while checking if its none)
@@ -25,18 +26,29 @@ def display_chat_page(session_state):
 
   # Displays greeting UI if conversation is empty
   if len(session_state.conversation) == 0:
-    # grey: #F0F2F6 - red: #FF4B4B
-    st.markdown(
-      """
-      <div style="font-size: 20px; margin-top: 20px; display: flex; justify-content: center; align-items: center; height: 100px;">
-          <div style="text-align: center; background-color: #F0F2F6; border-radius: 10px; padding: 30px;">
-              Hello, I am <strong>TopicSummarizer</strong>.<br>
-              Ask me anything😊.
-          </div>
-      </div>
-      """, unsafe_allow_html=True
-      )
+    col1, col2 = st.columns(spec=[2, 1], gap="large")  # Adjust the ratio to control the width
+
+    # Add greeting in the first column
+    with col1:
+        st.markdown(
+            """
+            <div style="font-size: 20px; margin-top: 20px; text-align: center;">
+                <div style="background-color: #F0F2F6; border-radius: 10px; padding: 30px;">
+                    Hello, I am <strong>TopicSummarizer</strong> this a me in the picture🙃<br><br>
+                    Ask me anything😊
+                </div>
+            </div>
+            """, 
+            unsafe_allow_html=True
+        )
+
+    # Add image in the second column
+    with col2:
+        try:
+            image = get_agent_image()
+            st.image(image.content, width=250)
+        except:
+            st.write("Image not available.")
     
-  # Return adjust session_state in order to update it in the app
-  print(f"\n\n\n--------{len(session_state['conversation'])}")
+  # Return adjusted session_state in order to update it in the app
   return session_state

@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 # FastAPI
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from pydantic import BaseModel
 
 # LangChain
@@ -61,6 +61,13 @@ def call_agent(request: Message):
         elif e.response.status_code == 429: return "Rate limit reached for model"
         elif e.response.status_code == 500: return "Internal Server Error"
         elif e.response.status_code == 503: return "Internal Server Error"
+
+@app.get("/image/")
+def get_agent_image():
+    try:
+        return Response(content=agent.graph.get_graph().draw_mermaid_png(), media_type="img/png")
+    except:
+        return "error"
 
 # Only run this if the script is executed directly (not inside a notebook or interactive shell)
 if __name__ == "__main__":
