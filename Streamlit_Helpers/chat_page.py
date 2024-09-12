@@ -34,7 +34,7 @@ def display_chat_page(session_state):
             """
             <div style="font-size: 20px; margin-top: 20px; text-align: center;">
                 <div style="background-color: #F0F2F6; border-radius: 10px; padding: 30px;">
-                    Hello, I am <strong>TopicSummarizer</strong> this a me in the picture🙃<br><br>
+                    Hello, I am <strong>TopicSummarizer</strong> this me in the picture🙃<br><br>
                     Ask me anything😊
                 </div>
             </div>
