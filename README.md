@@ -1,4 +1,4 @@
-<h1 align="center">Topic Summarizer</h1>
+<h1 align="center">🔍Topic Summarizer📑</h1>
 
 <h3>⬇️To Use this Repo</h3>
 
@@ -26,7 +26,7 @@
    streamlit run streamlit_app.py
    ```
 <br></br>
-<h3>🎯Aim</h3>
+<h3>🎯Aim of this Repo</h3>
 The aim of this repo is to build a system that stays up-to-date with current day events, allowing users to interact with it and ask about any topic at any time.
 
 <h3>🛠️Tools Used</h3>
