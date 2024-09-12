@@ -9,9 +9,9 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 
 # LangChain
-from Helpers.agent import Agent
+from FastAPI_Helpers.agent import Agent
 from langchain_groq import ChatGroq
-from Helpers.prompts import searcher_prompt
+from FastAPI_Helpers.prompts import searcher_prompt
 from langchain_core.messages import HumanMessage
 from langchain_community.tools import TavilySearchResults
 
@@ -36,21 +36,18 @@ def send_user_message(user_message):
         response.append(event["conversation"][-1])
     
     state = agent.graph.get_state(config=config).values
-    return {
-        "response": response,
-        "conversation": state['conversation']
-        }
+    return {"response": response,}
 
 ###############
 # Prepare API #
 ###############
 app = FastAPI()
 
-class Messages(BaseModel):
-  messages: str
+class Message(BaseModel):
+  message: str
 
 @app.post("/conversation/")
-def call_agent(request: Messages):
+def call_agent(request: Message):
     try:
         user_message = HumanMessage(content=request.message)
         ai_response = send_user_message(user_message)
