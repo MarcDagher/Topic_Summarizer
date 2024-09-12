@@ -1,4 +1,3 @@
-import ast
 import streamlit as st
 from Streamlit_Helpers.chat_page import display_chat_page
 
@@ -11,9 +10,9 @@ if not ("pages") in st.session_state:
 if "conversation" not in st.session_state:
   st.session_state.conversation = []
 
-#######################
-# UI Order of Display #
-#######################
+##############
+# Display UI #
+##############
 
 # Chat Page
 if st.session_state.current_page == 'chat':

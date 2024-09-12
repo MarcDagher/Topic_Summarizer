@@ -24,7 +24,7 @@ load_dotenv(dotenv_path=dotenv_path)
 #################
 # Prepare Agent #
 #################
-model = ChatGroq(model="mixtral-8x7b-32768", temperature=0.2)
+model = ChatGroq(model="llama3-70b-8192", temperature=0.2)
 tavily_search_client = TavilySearchResults(max_results=5)
 agent = Agent(model=model, tools=[tavily_search_client], system_prompt=searcher_prompt.format(todays_date=str(datetime.datetime.now().date())))
 
@@ -35,8 +35,7 @@ def send_user_message(user_message):
     for event in agent.graph.stream({"conversation": [HumanMessage(content=str(user_message))]}, config, stream_mode="values"):
         response.append(event["conversation"][-1])
     
-    state = agent.graph.get_state(config=config).values
-    return {"response": response,}
+    return {"response": response}
 
 ###############
 # Prepare API #
